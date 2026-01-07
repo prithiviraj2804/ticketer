@@ -1,4 +1,4 @@
-import requests
+from curl_cffi import requests
 import logging
 import re
 import asyncio
@@ -62,7 +62,7 @@ class TicketMonitor:
         }
 
         try:
-            response = requests.get(self.config.url, headers=headers, timeout=30)
+            response = requests.get(self.config.url, headers=headers, timeout=30, impersonate="chrome")
             
             if response.status_code == 403:
                 logger.error("403 Forbidden encountered.")
